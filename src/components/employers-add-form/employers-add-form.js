@@ -10,7 +10,7 @@ class EmployersAddForm extends Component {
             salary: ''
         }
     }
-    
+
     onValueChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -19,6 +19,7 @@ class EmployersAddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        if (this.state.name < 3 || !this.state.salary) return;
         const { name, salary } = this.state;
         this.props.onAdd(name, salary);
         this.setState({
@@ -37,17 +38,17 @@ class EmployersAddForm extends Component {
                         className="form-control new-post-label"
                         placeholder="Как его зовут?"
                         name='name'
-                        value={name} 
-                        onChange={this.onValueChange}/>
+                        value={name}
+                        onChange={this.onValueChange} />
                     <input type="number"
                         className="form-control new-post-label"
                         placeholder="З/П в $?"
                         name='salary'
-                        value={salary} 
-                        onChange={this.onValueChange}/>
-    
+                        value={salary}
+                        onChange={this.onValueChange} />
+
                     <button type="submit"
-                            className="btn btn-outline-light">Добавить</button>
+                        className="btn btn-outline-light">Добавить</button>
                 </form>
             </div>
         )
